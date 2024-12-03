@@ -1,12 +1,12 @@
-name: CI/CD Pipeline
+name: CI/CD Workflow
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -48,7 +48,7 @@ jobs:
       - name: Run tests with Pytest
         env:
           DATABASE_URL: postgresql+asyncpg://user:password@localhost:5432/myappdb  # Configure the DATABASE_URL environment variable for tests
-        run: pytest
+        run: pytest --cov
 
   build-and-push-docker:
     needs: test
